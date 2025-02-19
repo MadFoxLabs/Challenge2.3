@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var bullet_speed = 1000
+var bullet_speed = 10
 
 var bullet_vector = Vector2()
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D

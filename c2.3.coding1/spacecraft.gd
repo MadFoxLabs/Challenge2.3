@@ -16,7 +16,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_left"):
 		my_movement.x = -1
 	elif Input.is_action_pressed("ui_right"):
-		my_movement.x = 1
+		my_movement.x = -1
 	else:
 		my_movement.x = 0
 	

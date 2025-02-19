@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dur1y1jgq7xcf"]
+
+[ext_resource type="Texture2D" uid="uid://dthod3imy4p0l" path="res://assets/gameOver.png" id="1_oymdm"]
+[ext_resource type="Script" path="res://scenes/game_over.gd" id="1_q02gi"]
+
+[sub_resource type="Gradient" id="Gradient_oxqu4"]
+offsets = PackedFloat32Array(0, 0.506024, 1)
+colors = PackedColorArray(1, 0.105882, 0.298039, 1, 0, 0, 0, 1, 1, 0.105882, 0.298039, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_toe3r"]
+gradient = SubResource("Gradient_oxqu4")
+fill_from = Vector2(0.0130435, 0.208696)
+fill_to = Vector2(1, 0.486957)
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_q02gi")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(586, 319)
+scale = Vector2(19.3125, 10.9688)
+texture = SubResource("GradientTexture2D_toe3r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(560.5, 325.5)
+scale = Vector2(1.36523, 1.36523)
+texture = ExtResource("1_oymdm")

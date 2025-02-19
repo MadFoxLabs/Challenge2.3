@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://ilo55eq6as3r"]
+
+[ext_resource type="Texture2D" uid="uid://mnl1jn273dpa" path="res://assets/bk.png" id="1_8h6kn"]
+[ext_resource type="PackedScene" uid="uid://2s7xoy2wsvcy" path="res://scenes/spacecraft.tscn" id="1_oqqw6"]
+[ext_resource type="PackedScene" uid="uid://cfki5iftcrper" path="res://scenes/spawner.tscn" id="4_gw00d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5shch"]
+radius = 14.5
+height = 62.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53bwx"]
+size = Vector2(20, 1024)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sacp"]
+size = Vector2(1152, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vyst5"]
+size = Vector2(3000, 20)
+
+[node name="Universe" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(0, 2048)
+autoscroll = Vector2(0, 20)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(512, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("1_8h6kn")
+
+[node name="Spacecraft" parent="." instance=ExtResource("1_oqqw6")]
+collision_layer = 4
+collision_mask = 4
+
+[node name="Laser" parent="Spacecraft" index="2" node_paths=PackedStringArray("universe")]
+universe = NodePath("../..")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Spacecraft"]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_5shch")
+
+[node name="Asteroids" type="Node2D" parent="."]
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="Spawner" parent="Spawners" node_paths=PackedStringArray("universe") instance=ExtResource("4_gw00d")]
+position = Vector2(578, -138)
+universe = NodePath("../..")
+
+[node name="Spawner2" parent="Spawners" node_paths=PackedStringArray("universe") instance=ExtResource("4_gw00d")]
+position = Vector2(797, -139)
+universe = NodePath("../..")
+
+[node name="Spawner3" parent="Spawners" node_paths=PackedStringArray("universe") instance=ExtResource("4_gw00d")]
+position = Vector2(1009, -140)
+universe = NodePath("../..")
+
+[node name="Spawner4" parent="Spawners" node_paths=PackedStringArray("universe") instance=ExtResource("4_gw00d")]
+position = Vector2(376, -141)
+universe = NodePath("../..")
+
+[node name="Spawner5" parent="Spawners" node_paths=PackedStringArray("universe") instance=ExtResource("4_gw00d")]
+position = Vector2(156, -140)
+universe = NodePath("../..")
+
+[node name="Boundaries" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(0, 230)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/StaticBody2D"]
+shape = SubResource("RectangleShape2D_53bwx")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(1152, 230)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_53bwx")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Boundaries"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/StaticBody2D3"]
+position = Vector2(576, 0)
+shape = SubResource("RectangleShape2D_1sacp")
+
+[node name="AsteroidKiller" type="StaticBody2D" parent="Boundaries" groups=["AsteroidKiller"]]
+position = Vector2(0, 785)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/AsteroidKiller"]
+position = Vector2(576, 0)
+shape = SubResource("RectangleShape2D_vyst5")
+
+[editable path="Spacecraft"]

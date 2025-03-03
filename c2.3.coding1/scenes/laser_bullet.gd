@@ -10,7 +10,7 @@ var bullet_vector = Vector2()
 var bullets_gone_ref = null
 var universe_ref = null
 
-var laser_power = 40
+var laser_power = 50
 
 func _physics_process(delta: float) -> void:
 	
